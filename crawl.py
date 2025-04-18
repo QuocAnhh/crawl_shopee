@@ -92,6 +92,7 @@ class ShopeeCrawler:
             self.driver.get(product_url)
             
             # nếu như mà gặp captcha thì yêu cầu người dùng giải thủ công
+            # VẤN ĐỀ: đã gặp CATPCHA nhưng đang bị phát hiện là bot, có nút thử lại nhưng không thể thử lại được
             if "verify" in self.driver.current_url:
                 input("giải CAPTCHA thủ công và nhấn Enter...")
                 self.driver.get(product_url)
