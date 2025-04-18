@@ -46,10 +46,10 @@ class ShopeeCrawler:
                 service=service, 
                 options=options
             )
-            print("✅ Khởi động trình duyệt thành công")
+            print("Khởi động trình duyệt thành công")
             
         except Exception as e:
-            print(f"❌ Lỗi khởi động trình duyệt: {str(e)}")
+            print(f"Lỗi khởi động trình duyệt: {str(e)}")
             raise
 
     def _get_user_agents(self):
@@ -79,7 +79,7 @@ class ShopeeCrawler:
                 "date": el.find_element(By.CSS_SELECTOR, ".shopee-product-rating__time").text
             } for el in self.driver.find_elements(By.CSS_SELECTOR, "div.shopee-product-rating")]
         except Exception as e:
-            print(f"❌ Lỗi trích xuất: {str(e)}")
+            print(f" Lỗi trích xuất: {str(e)}")
             return []
 
     def crawl(self, product_url):
@@ -103,7 +103,7 @@ class ShopeeCrawler:
             return self._extract_reviews()
             
         except Exception as e:
-            print(f"❌ Lỗi tổng: {str(e)}")
+            print(f" Lỗi tổng: {str(e)}")
             return []
         finally:
             if self.driver:
