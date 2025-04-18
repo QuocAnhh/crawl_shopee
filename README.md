@@ -1,28 +1,28 @@
 # Crawl Shopee
 
-A Python-based web crawler designed specifically for extracting data from the Shopee e-commerce platform.
+A Python-based web scraper for extracting data from Shopee e-commerce platform.
 
 ## Overview
 
-This tool allows you to programmatically collect product information, prices, reviews, and other data from Shopee. It can be used for price monitoring, market research, competitor analysis, or data collection for machine learning projects.
+This project is designed to crawl and extract data from the Shopee marketplace. The tool helps collect product information, prices, reviews, and other relevant data from Shopee's website.
 
 ## Features
 
-- Extract product details (name, price, description, etc.)
-- Collect product reviews and ratings
-- Navigate through product categories
-- Filter products by various criteria
-- Export data to multiple formats (CSV)
-- Configurable crawling parameters
-- Rate limiting to avoid IP blocks
+- Extract product information from Shopee
+- Handle pagination for comprehensive data collection
+- Manage request headers and cookies to mimic browser behavior
+- Process and structure the extracted data
+- Export data to usable formats
+
+## Requirements
+
+- Python 3.10+
+- Required Python packages (install via `pip install -r requirements.txt`):
+  - pandas
+  - selenium
+  - Genlogin
 
 ## Installation
-
-### Prerequisites
-
-- Python 3.11+
-
-### Setup
 
 1. Clone the repository:
    ```bash
@@ -35,21 +35,32 @@ This tool allows you to programmatically collect product information, prices, re
    pip install -r requirements.txt
    ```
 
-## Basic Usage
+## Usage
 
-```python
-Run python crawl.py
-# Sau khi chạy, terminal sẽ hiện lên lệnh nhập URL của trang sản phẩm shopee cần crawl data
-# Rồi code sẽ tự động kết nối với API của Genlogin và khởi động profile (phải tạo sẵn profile)
-```
-## Disclaimer
+1. Configure the crawler parameters in the configuration file or directly in the script
+2. Run the main script:
+   ```bash
+   python crawl.py
+   ```
 
-This tool is for educational purposes only. Always respect Shopee's terms of service and robots.txt directives. Excessive scraping may lead to IP blocks or account restrictions. Use responsibly and implement appropriate delays between requests.
+3. The extracted data will be saved in the specified output format (e.g., CSV, JSON)
 
+## Configuration
+
+Adjust the crawler settings as needed:
+- Target URLs
+- Search queries
+- Number of pages to crawl
+- Output file format and location
+- Request delays to avoid being blocked
+
+## Notes
+
+- This tool is for educational purposes only
+- Always respect Shopee's terms of service and robots.txt directives
+- Implement appropriate delays between requests to avoid IP blocks
 
 ## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
