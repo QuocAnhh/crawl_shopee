@@ -9,7 +9,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from Genlogin import Genlogin
 
-#CODE NÀY CHƯA VƯỢT QUA ĐƯỢC CAPTCHA, VÌ ĐANG BỊ DETECT LÀ BOT
+'''
+CODE NÀY CHƯA VƯỢT QUA ĐƯỢC PHẦN CAPTCHA CỦA SHOPEE, DO BỊ DETECT LÀ BOT
+'''
 
 class ShopeeCrawler:
     def __init__(self):
@@ -18,9 +20,11 @@ class ShopeeCrawler:
         self.profile_id = None
 
     def _human_delay(self):
+        '''Tạo độ trễ ngẫu nhiên giữa các thao tác cho giống người thật'''
         time.sleep(random.uniform(1.5, 4.5) + random.random())
 
     def _start_stealth_browser(self):
+        '''Làm theo document của genlogin'''
         try:
             # Lấy profile từ Genlogin
             profile_data = self.gen.getProfiles(0, 1)
@@ -34,7 +38,7 @@ class ShopeeCrawler:
                 raise Exception("Không thể khởi chạy profile")
             
             # xử lý endpoint
-            debugger_address = run_data["wsEndpoint"].replace("ws://", "").split("/")[0] 
+            debugger_address = run_data["wsEndpoint"].replace("ws://", "").split("/")[0]
             
             options = webdriver.ChromeOptions()
             options.add_experimental_option("debuggerAddress", debugger_address)
@@ -52,14 +56,16 @@ class ShopeeCrawler:
             print(f"Lỗi khởi động trình duyệt: {str(e)}")
             raise
 
+    #test xem có chạy hiệu quả không
     def _get_user_agents(self):
+        
         return [
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
             "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1"
         ]
 
     def _shopee_behavior(self):
-        # giả lập thao tác người thật
+        # giả lập thao tác người thật: cuộn trang, di chuyển chuột ngẫu nhiên
         for _ in range(3):
             self.driver.execute_script(f"window.scrollBy(0, {random.randint(300, 800)})")
             ActionChains(self.driver).move_by_offset(random.randint(10,100), random.randint(10,100)).perform()
@@ -72,7 +78,7 @@ class ShopeeCrawler:
                 EC.presence_of_element_located((By.CSS_SELECTOR, "div.shopee-product-rating"))
             )
             return [{
-                #phần content chưa tìm được class, chưa tìm ra giải pháp thay thế
+                #phần content chưa tìm được class --> chưa tìm ra giải pháp thay thế
                 "content": el.find_element(By.CSS_SELECTOR, ".shopee-product-rating__main").text,
                 "rating": el.find_element(By.CSS_SELECTOR, ".repeat-purchase-con").get_attribute("style"),
                 "author": el.find_element(By.CSS_SELECTOR, ".shopee-product-rating__author-name").text,
