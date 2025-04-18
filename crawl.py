@@ -9,6 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from Genlogin import Genlogin
 
+#file code này chưa vượt qua được captcha, đang bị dectect là bot(đã chạy bằng proxy và antidectect browser)
+#CHƯA CÓ GIẢI PHÁP CHO CAPTCHA
 class ShopeeCrawler:
     def __init__(self):
         self.driver = None
@@ -91,7 +93,7 @@ class ShopeeCrawler:
             
             # nếu như mà gặp captcha thì yêu cầu người dùng giải thủ công
             if "verify" in self.driver.current_url:
-                input("⚠️ Vui lòng giải CAPTCHA thủ công và nhấn Enter...")
+                input("giải CAPTCHA thủ công và nhấn Enter...")
                 self.driver.get(product_url)
             
             # mô phỏngg hành vi người dùng
