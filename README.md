@@ -38,7 +38,7 @@ This tool allows you to programmatically collect product information, prices, re
 ## Basic Usage
 
 ```python
-Run python crawl.py
+Run ```python crawl.py```
 # Sau khi chạy, terminal sẽ hiện lên lệnh nhập URL của trang sản phẩm shopee cần crawl data
 # Rồi code sẽ tự động kết nối với API của Genlogin và khởi động profile (phải tạo sẵn profile)
 ```
